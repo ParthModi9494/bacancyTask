@@ -1,4 +1,10 @@
+@import "src/app/styles/variables.scss";
+
 #footer {
-    background-color: #ffa400;
+    background-color: $primary-color;
+    color: $light-color;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

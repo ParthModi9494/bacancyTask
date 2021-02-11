@@ -1,5 +1,7 @@
+@import "src/app/styles/variables.scss";
+
 #login {
-   background-color: #ffffff;
+   background-color: $light-color;
    background-image: url("../../../assets/images/background.svg");
    background-attachment: fixed;
    background-size: cover;
@@ -9,10 +11,10 @@
    justify-content: center;
 
    .logo {
-      width: 50px;
-      height: 50px;
+      width: 3rem;
+      height: 3rem;
       border-radius: 50%;
-      background-color: #faa400;
+      background-color: $primary-color;
    }
 
    form {
@@ -35,11 +37,11 @@
 
       .error-msg {
          font-size: 0.8rem;
-         color: #faa400;
+         color: $primary-color;
       }
 
       #submit {
-         background-color: #faa400;
+         background-color: $primary-color;
       }
       .message {
          font-size: 0.8rem;

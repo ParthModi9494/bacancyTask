@@ -1,4 +1,17 @@
-#header{
-    background-color: #ffa400;
+@import "src/app/styles/variables.scss";
+
+#header {
+    background-color: $primary-color;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .navbar-brand {
+        font-weight: 600;
+        color: $light-color;
+    }
+    a {
+        margin: 0.5rem;
+        color: $light-color;
+    }
 }

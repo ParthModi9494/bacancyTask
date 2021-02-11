@@ -1,9 +1,10 @@
+@import "src/app/styles/variables.scss";
 #stock-update {
     input {
-        width: 50px;
+        width: 3rem;
     }
     .label {
-        color: white;
+        color: $light-color;
         padding: 6px;
         margin-right: 10px;
         border-radius: 2px;

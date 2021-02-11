@@ -1,16 +1,18 @@
 <section id="products" class="container mt-5">
-
-    <div class="input-group">
-        <span class="input-group-prepend">
-            <div class="input-group-text bg-transparent border-right-0">
-                <i class="bi bi-search"></i>
-            </div>
-        </span>
-        <input class="form-control py-2 border-left-0 border" type="search" #searchInput
-            (input)="searchQuery=searchInput.value" placeholder="Enter ID, Title Price or Stock..." id="search-input" />
+    <div class="row">
+        <div class="input-group col-12">
+            <span class="input-group-prepend">
+                <div class="input-group-text bg-transparent border-right-0">
+                    <i class="bi bi-search"></i>
+                </div>
+            </span>
+            <input class="form-control py-2 border-left-0 border" type="search" #searchInput
+                (input)="searchQuery=searchInput.value" placeholder="Enter ID, Title Price or Stock..."
+                id="search-input" />
+        </div>
     </div>
 
-    <div class="action-buttons row mt-3">
+    <div class="action-buttons mt-3 row">
         <button (click)="addOrEditProduct(addOrEditProductModal)" class="col btn btn-primary">
             Add Product
         </button>
@@ -41,53 +43,54 @@
             </select>
         </div>
     </div>
-
-    <table class="table mt-5">
-        <thead>
-            <tr>
-                <th class="text-center" scope="col">ID</th>
-                <th class="text-center" scope="col">Title</th>
-                <th class="text-center" scope="col">Price</th>
-                <th class="text-center" scope="col">Stock</th>
-                <th class="text-center" scope="col">Stock Update</th>
-                <th class="text-center" scope="col">Total Price</th>
-                <th class="text-center" scope="col">Delete</th>
-                <th class="text-center" scope="col">Edit</th>
-                <th class="text-center" scope="col">Carts</th>
-                <th class="text-center" scope="col">Favourites</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr
-                *ngFor="let product of products | productSearch:searchQuery | slice: (page-1) * pageSize : page * pageSize">
-                <td class=" text-center">{{product.data.id}}</td>
-                <td class="text-center">{{product.data.title}}</td>
-                <td class="text-center">{{product.data.price}}</td>
-                <td class="text-center">{{product.data.stock}}</td>
-                <td class="text-center">
-                    <app-stock-update></app-stock-update>
-                </td>
-                <td class="text-center">{{product.data.price * product.data.stock}}</td>
-                <td class="text-center"><button (click)="deleteProduct(product.docId)"
-                        class="btn btn-danger">Delete</button></td>
-                <td class="text-center"><button (click)="addOrEditProduct(addOrEditProductModal,product)"
-                        class="btn btn-info">Edit</button></td>
-                <td class="text-center">
-                    <button (click)="addOrRemoveCart(product.docId,product.data)" *ngIf="!product.data.isAddedIntoCart"
-                        class="btn btn-success">Add To
-                        Cart</button>
-                    <button (click)="addOrRemoveCart(product.docId,product.data)" *ngIf="product.data.isAddedIntoCart"
-                        class="btn btn-success">Remove From Cart</button>
-                </td>
-                <td class="text-center text-danger">
-                    <i (click)="addOrRemoveFavourite(product.docId,product.data)" *ngIf="product.data.isFavourite"
-                        class="bi bi-heart-fill"></i>
-                    <i (click)="addOrRemoveFavourite(product.docId,product.data)" *ngIf="!product.data.isFavourite"
-                        class="bi bi-heart"></i>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive mt-5 row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">ID</th>
+                    <th class="text-center" scope="col">Title</th>
+                    <th class="text-center" scope="col">Price</th>
+                    <th class="text-center" scope="col">Stock</th>
+                    <th class="text-center" scope="col">Stock Update</th>
+                    <th class="text-center" scope="col">Total Price</th>
+                    <th class="text-center" scope="col">Delete</th>
+                    <th class="text-center" scope="col">Edit</th>
+                    <th class="text-center" scope="col">Carts</th>
+                    <th class="text-center" scope="col">Favourites</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let product of products | productSearch:searchQuery | slice: (page-1) * pageSize : page * pageSize">
+                    <td class=" text-center">{{product.data.id}}</td>
+                    <td class="text-center">{{product.data.title}}</td>
+                    <td class="text-center">{{product.data.price}}</td>
+                    <td class="text-center">{{product.data.stock}}</td>
+                    <td class="text-center">
+                        <app-stock-update></app-stock-update>
+                    </td>
+                    <td class="text-center">{{product.data.price * product.data.stock}}</td>
+                    <td class="text-center"><button (click)="deleteProduct(product.docId)"
+                            class="btn btn-danger">Delete</button></td>
+                    <td class="text-center"><button (click)="addOrEditProduct(addOrEditProductModal,product)"
+                            class="btn btn-info">Edit</button></td>
+                    <td class="text-center">
+                        <button (click)="addOrRemoveCart(product.docId,product.data)"
+                            *ngIf="!product.data.isAddedIntoCart" class="btn btn-success">Add To
+                            Cart</button>
+                        <button (click)="addOrRemoveCart(product.docId,product.data)"
+                            *ngIf="product.data.isAddedIntoCart" class="btn btn-success">Remove From Cart</button>
+                    </td>
+                    <td class="text-center text-danger">
+                        <i (click)="addOrRemoveFavourite(product.docId,product.data)" *ngIf="product.data.isFavourite"
+                            class="bi bi-heart-fill"></i>
+                        <i (click)="addOrRemoveFavourite(product.docId,product.data)" *ngIf="!product.data.isFavourite"
+                            class="bi bi-heart"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <ng-template #addOrEditProductModal let-modal>
