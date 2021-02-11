@@ -13,7 +13,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
 import { StockUpdateComponent } from './components/stock-update/stock-update.component';
 import { StockTypeDirective } from './directives/stock-type.directive';
 import { ApiInterceptor } from "./interceptor/api.interceptor";
@@ -25,22 +24,17 @@ import { ProductSearchPipe } from './pipes/product-search.pipe';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent,
-    ProductListComponent,
-    ProductSearchPipe,
-    StockUpdateComponent,
-    StockTypeDirective
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }
