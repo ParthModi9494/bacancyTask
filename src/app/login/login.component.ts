@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertService } from '../alert.service';
 import { AuthService, LoginResponse } from '../auth.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {
     // Using existing credentials as we can't register with new credentials in reqres api
     this.loginForm = this.formBuilder.group({
@@ -39,6 +41,14 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password).subscribe((loginRes: LoginResponse) => {
       this.isLoading = false;
       this.router.navigateByUrl('products');
+    }, () => {
+      console.log("error");
+      this.alertService.showAlert({
+        title: "Error!",
+        icon: "error",
+        html: "Please use the below dummy credentials : </br></br> <b>Email:</b> eve.holt@reqres.in </br></br> <b>Password:</b> (any password of your choice 😆)"
+      });
+      this.isLoading = false;
     })
   }
 }

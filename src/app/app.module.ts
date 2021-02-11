@@ -16,6 +16,8 @@ import { LoginComponent } from './login/login.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductSearchPipe } from './product-search.pipe';
+import { StockUpdateComponent } from './stock-update/stock-update.component';
+import { StockTypeDirective } from './stock-type.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ProductSearchPipe } from './product-search.pipe';
     HeaderComponent,
     FooterComponent,
     ProductListComponent,
-    ProductSearchPipe
+    ProductSearchPipe,
+    StockUpdateComponent,
+    StockTypeDirective
   ],
   imports: [
     BrowserModule,
