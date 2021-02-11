@@ -16,7 +16,7 @@ export class ProductSearchPipe implements PipeTransform {
     }
     return products.filter((product) => {
       return (
-        product.data.id.toString().toLowerCase().includes(searchQuery) ||
+        product.data.id?.toString().toLowerCase().includes(searchQuery) ||
         product.data.title.toLowerCase().includes(searchQuery) ||
         product.data.price.toString().toLowerCase().includes(searchQuery) ||
         product.data.stock.toString().toLowerCase().includes(searchQuery)
