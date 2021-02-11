@@ -6,57 +6,117 @@
                 <i class="bi bi-search"></i>
             </div>
         </span>
-        <input class="form-control py-2 border-left-0 border" type="search"
-            placeholder="Enter ID, Title Price or Stock..." id="example-search-input" />
+        <input class="form-control py-2 border-left-0 border" type="search" #searchInput
+            (input)="searchQuery=searchInput.value" placeholder="Enter ID, Title Price or Stock..." id="search-input" />
     </div>
 
     <div class="action-buttons row mt-3">
-        <button class="col btn btn-primary">
+        <button (click)="addOrEditProduct(addOrEditProductModal)" class="col btn btn-primary">
             Add Product
         </button>
 
-        <button class="col btn btn-warning">
-            Favourites ({{favourites}})
+        <button class="col btn btn-warning" [ngClass]="{'active': isShowingFavourite}" (click)="getFavourites()">
+            Favourites ({{totalFavourites}})
         </button>
 
-        <button class="col btn btn-info">
-            Cart ({{cartItems}})
+        <button class="col btn btn-info" [ngClass]="{'active': isShowingCart}" (click)="getCartItems()">
+            Cart ({{totalCartItems}})
         </button>
 
-        <button class="col btn btn-danger">
+        <button class="col btn btn-danger" (click)="logout()">
             Logout
         </button>
+    </div>
+    <div class="mt-5 pagination">
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="products.length"
+            [directionLinks]="false">
+        </ngb-pagination>
+        <div>
+            <label for="cars">Products per page :</label>
+            <select [(ngModel)]="pageSize" class="form-select" name="itemPerPage" id="products">
+                <option value="5">5</option>
+                <option selected value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+        </div>
     </div>
 
     <table class="table mt-5">
         <thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Title</th>
-                <th scope="col">Price</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Stock Update</th>
-                <th scope="col">Total Price</th>
-                <th scope="col">Delete</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Carts</th>
-                <th scope="col">Favourites</th>
+                <th class="text-center" scope="col">ID</th>
+                <th class="text-center" scope="col">Title</th>
+                <th class="text-center" scope="col">Price</th>
+                <th class="text-center" scope="col">Stock</th>
+                <th class="text-center" scope="col">Stock Update</th>
+                <th class="text-center" scope="col">Total Price</th>
+                <th class="text-center" scope="col">Delete</th>
+                <th class="text-center" scope="col">Edit</th>
+                <th class="text-center" scope="col">Carts</th>
+                <th class="text-center" scope="col">Favourites</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th>1</th>
-                <td>Mi A1</td>
-                <td>10000</td>
-                <td>1433</td>
-                <td>143</td>
-                <td>14330000</td>
-                <td><button class="btn btn-danger">Delete</button></td>
-                <td><button class="btn btn-info">Edit</button></td>
-                <td><button class="btn btn-success">Add To Cart</button></td>
-                <td><i class="bi bi-heart"></i></td>
+            <tr
+                *ngFor="let product of products | productSearch:searchQuery | slice: (page-1) * pageSize : page * pageSize">
+                <td class=" text-center">{{product.data.id}}</td>
+                <td class="text-center">{{product.data.title}}</td>
+                <td class="text-center">{{product.data.price}}</td>
+                <td class="text-center">{{product.data.stock}}</td>
+                <td class="text-center">
+                    <app-stock-update></app-stock-update>
+                </td>
+                <td class="text-center">{{product.data.price * product.data.stock}}</td>
+                <td class="text-center"><button (click)="deleteProduct(product.docId)"
+                        class="btn btn-danger">Delete</button></td>
+                <td class="text-center"><button (click)="addOrEditProduct(addOrEditProductModal,product)"
+                        class="btn btn-info">Edit</button></td>
+                <td class="text-center">
+                    <button (click)="addOrRemoveCart(product.docId,product.data)" *ngIf="!product.data.isAddedIntoCart"
+                        class="btn btn-success">Add To
+                        Cart</button>
+                    <button (click)="addOrRemoveCart(product.docId,product.data)" *ngIf="product.data.isAddedIntoCart"
+                        class="btn btn-success">Remove From Cart</button>
+                </td>
+                <td class="text-center text-danger">
+                    <i (click)="addOrRemoveFavourite(product.docId,product.data)" *ngIf="product.data.isFavourite"
+                        class="bi bi-heart-fill"></i>
+                    <i (click)="addOrRemoveFavourite(product.docId,product.data)" *ngIf="!product.data.isFavourite"
+                        class="bi bi-heart"></i>
+                </td>
             </tr>
         </tbody>
     </table>
-
 </section>
+
+<ng-template #addOrEditProductModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add new Product</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross clicked')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="addOREditProductForm" ngNativeValidate>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" formControlName="title" id="title" class="form-control" name="title">
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="price">Price</label>
+                    <input type="number" min="0" formControlName="price" id="price" class="form-control" name="price">
+                </div>
+                <div class="form-group col">
+                    <label for="stock">Stock</label>
+                    <input type="number" min="0" formControlName="stock" id="stock" class="form-control" name="stock">
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-warning" (click)="modal.close()">Save</button>
+    </div>
+</ng-template>
