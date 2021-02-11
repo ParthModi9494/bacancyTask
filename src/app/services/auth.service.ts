@@ -18,7 +18,6 @@ export class AuthService {
     private http: HttpClient,
     private router: Router
   ) {
-    console.log("authservice constructor");
     const token = localStorage.getItem("token");
     if (token && token.length > 0) {
       this.isLoggedIn = true;

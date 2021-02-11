@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertService } from '../alert.service';
-import { AuthService, LoginResponse } from '../auth.service';
+import { AlertService } from '../../services/alert.service';
+import { AuthService, LoginResponse } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
       this.isLoading = false;
       this.router.navigateByUrl('products');
     }, () => {
-      console.log("error");
       this.alertService.showAlert({
         title: "Error!",
         icon: "error",

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { Product } from './product';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +42,6 @@ export class ProductsService {
   }
 
   editProduct(docId: string, productDataToUpdate: Product) {
-    console.log("edit");
     return this.productsRef.doc(`${docId}`).update(productDataToUpdate);
   }
 }

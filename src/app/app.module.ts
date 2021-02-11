@@ -5,19 +5,19 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from "src/environments/environment";
-import { ApiInterceptor } from './api.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProductSearchPipe } from './product-search.pipe';
-import { StockUpdateComponent } from './stock-update/stock-update.component';
-import { StockTypeDirective } from './stock-type.directive';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { StockUpdateComponent } from './components/stock-update/stock-update.component';
+import { StockTypeDirective } from './directives/stock-type.directive';
+import { ApiInterceptor } from "./interceptor/api.interceptor";
+import { ProductSearchPipe } from './pipes/product-search.pipe';
 
 @NgModule({
   declarations: [

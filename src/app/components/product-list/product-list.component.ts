@@ -3,10 +3,10 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SweetAlertOptions } from 'sweetalert2';
-import { AlertService } from '../alert.service';
-import { AuthService } from '../auth.service';
-import { Product } from '../product';
-import { ProductsService } from '../products.service';
+import { AlertService } from '../../services/alert.service';
+import { AuthService } from '../../services/auth.service';
+import { Product } from '../../models/product';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-product-list',
