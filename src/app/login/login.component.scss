@@ -1,0 +1,59 @@
+#login {
+   background-color: #ffffff;
+   background-image: url("../../assets/images/background.svg");
+   background-attachment: fixed;
+   background-size: cover;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #faa400;
+   }
+
+   form {
+      height: 400px;
+      border: 1px solid;
+      background: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(1.1px);
+      -webkit-backdrop-filter: blur(1.5px);
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .title {
+         font-size: 2rem;
+         font-weight: 600;
+      }
+
+      .error-msg {
+         font-size: 0.8rem;
+         color: #faa400;
+      }
+
+      #submit {
+         background-color: #faa400;
+      }
+      .message {
+         font-size: 0.8rem;
+         cursor: pointer;
+         &:hover {
+            text-decoration: underline;
+         }
+      }
+      .loader {
+         width: 3rem;
+         height: 3rem;
+         position: absolute;
+         top: 50%;
+         left: calc(50%-1.5rem);
+      }
+   }
+}
