@@ -1,0 +1,13 @@
+.form-control:focus {
+    border-color: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.action-buttons {
+    button {
+        margin: 0px 10px;
+        color: rgb(255, 255, 255) !important;
+    }
+}

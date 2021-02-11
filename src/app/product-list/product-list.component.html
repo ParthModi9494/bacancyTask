@@ -1,0 +1,62 @@
+<section id="products" class="container mt-5">
+
+    <div class="input-group">
+        <span class="input-group-prepend">
+            <div class="input-group-text bg-transparent border-right-0">
+                <i class="bi bi-search"></i>
+            </div>
+        </span>
+        <input class="form-control py-2 border-left-0 border" type="search"
+            placeholder="Enter ID, Title Price or Stock..." id="example-search-input" />
+    </div>
+
+    <div class="action-buttons row mt-3">
+        <button class="col btn btn-primary">
+            Add Product
+        </button>
+
+        <button class="col btn btn-warning">
+            Favourites ({{favourites}})
+        </button>
+
+        <button class="col btn btn-info">
+            Cart ({{cartItems}})
+        </button>
+
+        <button class="col btn btn-danger">
+            Logout
+        </button>
+    </div>
+
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Stock Update</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Carts</th>
+                <th scope="col">Favourites</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>1</th>
+                <td>Mi A1</td>
+                <td>10000</td>
+                <td>1433</td>
+                <td>143</td>
+                <td>14330000</td>
+                <td><button class="btn btn-danger">Delete</button></td>
+                <td><button class="btn btn-info">Edit</button></td>
+                <td><button class="btn btn-success">Add To Cart</button></td>
+                <td><i class="bi bi-heart"></i></td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>
