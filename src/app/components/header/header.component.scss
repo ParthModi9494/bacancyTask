@@ -6,12 +6,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .navbar-brand {
-        font-weight: 600;
-        color: $light-color;
-    }
-    a {
-        margin: 0.5rem;
-        color: $light-color;
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .navbar-brand {
+            font-weight: 600;
+            color: $light-color;
+        }
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0 !important;
+            li {
+                list-style: none;
+                a {
+                    color: $light-color;
+                }
+            }
+        }
     }
 }
