@@ -52,7 +52,7 @@ export class ProductListComponent implements OnInit {
       const cartItems = this.products.filter((product) => {
         return product.data.isAddedIntoCart;
       });
-      this.totalCartItems = favourites ? cartItems.length : 0;
+      this.totalCartItems = cartItems ? cartItems.length : 0;
     }, (err: HttpErrorResponse) => {
       this.products = [];
     });
