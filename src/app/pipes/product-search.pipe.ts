@@ -5,7 +5,7 @@ import { Product } from '../models/product';
   name: 'productSearch'
 })
 export class ProductSearchPipe implements PipeTransform {
-
+  // filters the array based on the query provided
   transform(products: { docId: string, data: Product }[], ...args: string[]) {
     const searchQuery = args[0].toLowerCase();
     if (!products?.length || !args.length) {

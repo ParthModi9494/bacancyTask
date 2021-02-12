@@ -9,6 +9,7 @@ export class StockTypeDirective {
     private elementRef: ElementRef,
     private renderer: Renderer2) { }
 
+  // change text and color of the second label based on predefined condition
   ngOnChanges() {
     if (!this.stockValue) {
       this.setLabelData("", "");
@@ -26,6 +27,7 @@ export class StockTypeDirective {
     }
   }
 
+  // to set the element properties using renderer
   setLabelData(label: string, className: string) {
     this.renderer.setProperty(this.elementRef.nativeElement, "classList", ["label"]);
     this.renderer.setProperty(this.elementRef.nativeElement, "innerText", label);

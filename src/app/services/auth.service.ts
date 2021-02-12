@@ -26,6 +26,7 @@ export class AuthService {
     }
   }
 
+  // login the user using fake api
   login(email: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.baseUrl}/api/login`, { email, password }).pipe(
       map((loginResponse: LoginResponse) => {
@@ -40,6 +41,7 @@ export class AuthService {
     );
   }
 
+  // remove token from localstorage and navigate to login page
   logout() {
     this.isLoggedIn = false;
     localStorage.removeItem("token");

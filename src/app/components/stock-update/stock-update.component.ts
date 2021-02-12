@@ -13,6 +13,7 @@ export class StockUpdateComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // change the label and color based on predefined conditions
   changeLabel() {
     if (!this.stockValue) {
       this.stockStatus = null;

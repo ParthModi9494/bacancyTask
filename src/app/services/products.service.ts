@@ -15,6 +15,7 @@ export class ProductsService {
     return this.productsRef.add(product);
   }
 
+  // fetch all the products from the firebase
   fetchProducts() {
     return this.angularFireStore.collection("products").snapshotChanges().pipe(
       map((data) => {
@@ -29,18 +30,22 @@ export class ProductsService {
     );
   }
 
+  // delete product based on the document Id
   deleteProduct(docId: string) {
     return this.productsRef.doc(docId).delete();
   }
 
+  // updates the isAddedIntoCart property of the collection
   addOrRemoveCart(docId: string, isAddedIntoCart: boolean) {
     return this.productsRef.doc(`${docId}`).update({ isAddedIntoCart });
   }
 
+  // updates the isFavourite property of the collection
   addOrRemoveFavourite(docId: string, isFavourite: boolean) {
     return this.productsRef.doc(`${docId}`).update({ isFavourite });
   }
 
+  // updates the product data
   editProduct(docId: string, productDataToUpdate: Product) {
     return this.productsRef.doc(`${docId}`).update(productDataToUpdate);
   }

@@ -7,6 +7,7 @@ export class AlertService {
 
   constructor() { }
 
+  // fires sweet alert modal
   showAlert(options: SweetAlertOptions) {
     return Swal.fire(options);
   }

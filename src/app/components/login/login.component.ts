@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  // This will be called on for msubmit
   onSubmit() {
     if (!this.loginForm.valid) {
       return;
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
     this.login();
   }
 
+  // This will make a fake call to login
   login() {
     this.isLoading = true;
     const { email, password } = this.loginForm.value;

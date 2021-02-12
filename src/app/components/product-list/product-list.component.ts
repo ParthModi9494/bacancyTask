@@ -40,6 +40,7 @@ export class ProductListComponent implements OnInit {
     this.getProducts();
   }
 
+  // fetch all the products from the database
   getProducts() {
     this.productsService.fetchProducts().subscribe((docData) => {
       this.products = docData;
@@ -57,6 +58,7 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  // delete product from the database
   deleteProduct(docId: string) {
     const options: SweetAlertOptions = {
       title: "Are you sure?",
@@ -76,6 +78,7 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  // add new product into database
   addProduct() {
     const newProduct: Product = {
       id: this.products.length + 1,
@@ -94,6 +97,7 @@ export class ProductListComponent implements OnInit {
     }
   }
 
+  // edit the existing product data
   editProduct(docId: string) {
     const productToUpdate: Product = {
       price: this.addOREditProductForm.value.price,
@@ -109,6 +113,7 @@ export class ProductListComponent implements OnInit {
     }
   }
 
+  // to add or remove the cart from the Carts
   addOrRemoveCart(docId: string, productData: Product) {
     this.productsService.addOrRemoveCart(docId, !productData.isAddedIntoCart).then((data) => {
       if (productData.isAddedIntoCart) {
@@ -121,6 +126,7 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  // to add or remove the products from favourites
   addOrRemoveFavourite(docId: string, productData: Product) {
     this.productsService.addOrRemoveFavourite(docId, !productData.isFavourite).then((data) => {
       if (productData.isFavourite) {
@@ -137,6 +143,7 @@ export class ProductListComponent implements OnInit {
     this.authService.logout();
   }
 
+  // set the form values as per the user action to add or edit the product
   addOrEditProduct(content: TemplateRef<HTMLElement>, product?: { docId: string, data: Product }) {
     this.addOREditProductForm.patchValue({
       title: product ? product.data.title : "",
@@ -148,6 +155,7 @@ export class ProductListComponent implements OnInit {
     }, (reason) => { });
   }
 
+  // filter the favourites products
   getFavourites() {
     if (this.isShowingFavourite) {
       this.getProducts();
@@ -159,6 +167,7 @@ export class ProductListComponent implements OnInit {
     this.isShowingFavourite = !this.isShowingFavourite;
   }
 
+  // filter carts products
   getCartItems() {
     if (this.isShowingCart) {
       this.getProducts();
