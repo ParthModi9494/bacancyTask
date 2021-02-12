@@ -2,10 +2,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { APP_CONSTANTS } from 'src/app/constants/app.constants';
 import { SweetAlertOptions } from 'sweetalert2';
+import { Product } from '../../models/product';
 import { AlertService } from '../../services/alert.service';
 import { AuthService } from '../../services/auth.service';
-import { Product } from '../../models/product';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
@@ -62,7 +63,7 @@ export class ProductListComponent implements OnInit {
   deleteProduct(docId: string) {
     const options: SweetAlertOptions = {
       title: "Are you sure?",
-      text: "You want to delete this product?",
+      text: APP_CONSTANTS.DELETE_CONFIRM,
       icon: "warning",
       showDenyButton: true,
       showConfirmButton: true
@@ -70,9 +71,9 @@ export class ProductListComponent implements OnInit {
     this.alertService.showAlert(options).then((selection) => {
       if (selection.isConfirmed) {
         this.productsService.deleteProduct(docId).then((data) => {
-          this.alertService.showAlert({ title: "Success", icon: "success", timer: 2000 });
+          this.alertService.showAlert({ title: "Success", icon: "success", timer: APP_CONSTANTS.ALERT_TIMER });
         }).catch(() => {
-          this.alertService.showAlert({ title: "Error!", icon: "error", timer: 2000 });
+          this.alertService.showAlert({ title: "Error!", icon: "error", timer: APP_CONSTANTS.ALERT_TIMER });
         });
       }
     });
@@ -90,10 +91,10 @@ export class ProductListComponent implements OnInit {
     };
     if (newProduct.title.length > 0 && newProduct.price && newProduct.stock) {
       this.productsService.addProduct(newProduct).then(() => {
-        this.alertService.showAlert({ title: "Success", text: "Product successfully added!", icon: "success", timer: 2000 });
+        this.alertService.showAlert({ title: "Success", text: APP_CONSTANTS.PRODUCT_ADD_SUCCESS, icon: "success", timer: APP_CONSTANTS.ALERT_TIMER });
       });
     } else {
-      this.alertService.showAlert({ title: "Please provide valid details!", icon: "error", timer: 2000 });
+      this.alertService.showAlert({ title: APP_CONSTANTS.PRODUCT_VALID_ERR, icon: "error", timer: APP_CONSTANTS.ALERT_TIMER });
     }
   }
 
@@ -106,10 +107,10 @@ export class ProductListComponent implements OnInit {
     };
     if (productToUpdate.title.length > 0 && productToUpdate.price && productToUpdate.stock) {
       this.productsService.editProduct(docId, productToUpdate).then(() => {
-        this.alertService.showAlert({ title: "Success", text: "Product data successfully updated!", icon: "success", timer: 2000 });
+        this.alertService.showAlert({ title: "Success", text: APP_CONSTANTS.PRODUCT_EDIT_SUCCESS, icon: "success", timer: APP_CONSTANTS.ALERT_TIMER });
       });
     } else {
-      this.alertService.showAlert({ title: "Please provide valid details!", icon: "error", timer: 2000 });
+      this.alertService.showAlert({ title: APP_CONSTANTS.PRODUCT_VALID_ERR, icon: "error", timer: APP_CONSTANTS.ALERT_TIMER });
     }
   }
 
@@ -117,12 +118,12 @@ export class ProductListComponent implements OnInit {
   addOrRemoveCart(docId: string, productData: Product) {
     this.productsService.addOrRemoveCart(docId, !productData.isAddedIntoCart).then((data) => {
       if (productData.isAddedIntoCart) {
-        this.alertService.showAlert({ title: "Success", text: "Product successfully removed from Cart!", icon: "success", timer: 2000 });
+        this.alertService.showAlert({ title: "Success", text: APP_CONSTANTS.PRODUCT_CART_REMOVE, icon: "success", timer: APP_CONSTANTS.ALERT_TIMER });
       } else {
-        this.alertService.showAlert({ title: "Success", text: "Product successfully added into Cart!", icon: "success", timer: 2000 });
+        this.alertService.showAlert({ title: "Success", text: APP_CONSTANTS.PRODUCT_CART_ADD, icon: "success", timer: APP_CONSTANTS.ALERT_TIMER });
       }
     }).catch((err) => {
-      this.alertService.showAlert({ title: "Error!", icon: "error", timer: 2000 });
+      this.alertService.showAlert({ title: "Error!", icon: "error", timer: APP_CONSTANTS.ALERT_TIMER });
     });
   }
 
@@ -130,12 +131,12 @@ export class ProductListComponent implements OnInit {
   addOrRemoveFavourite(docId: string, productData: Product) {
     this.productsService.addOrRemoveFavourite(docId, !productData.isFavourite).then((data) => {
       if (productData.isFavourite) {
-        this.alertService.showAlert({ title: "Success", text: "Product removed from Favourites!", icon: "success", timer: 2000 });
+        this.alertService.showAlert({ title: "Success", text: APP_CONSTANTS.PRODUCT_FAV_REMOVE, icon: "success", timer: APP_CONSTANTS.ALERT_TIMER });
       } else {
-        this.alertService.showAlert({ title: "Success", text: "Product marked as Favourite!", icon: "success", timer: 2000 });
+        this.alertService.showAlert({ title: "Success", text: APP_CONSTANTS.PRODUCT_FAV_ADD, icon: "success", timer: APP_CONSTANTS.ALERT_TIMER });
       }
     }).catch((err) => {
-      this.alertService.showAlert({ title: "Error!", icon: "error", timer: 2000 });
+      this.alertService.showAlert({ title: "Error!", icon: "error", timer: APP_CONSTANTS.ALERT_TIMER });
     });
   }
 

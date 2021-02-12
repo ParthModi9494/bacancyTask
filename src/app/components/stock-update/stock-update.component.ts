@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APP_CONSTANTS } from 'src/app/constants/app.constants';
 
 @Component({
   selector: 'app-stock-update',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class StockUpdateComponent implements OnInit {
   stockStatus: string | null = null;
   stockValue: string = "";
+  APP_CONSTANTS = APP_CONSTANTS;
   constructor() { }
 
   ngOnInit(): void {
@@ -21,11 +23,11 @@ export class StockUpdateComponent implements OnInit {
     }
     const stock: number = Number(this.stockValue);
     if (stock <= 10) {
-      this.stockStatus = "Low"
+      this.stockStatus = APP_CONSTANTS.LABEL_LOW;
     } else if (stock > 10 && stock <= 20) {
-      this.stockStatus = "Average"
+      this.stockStatus = APP_CONSTANTS.LABEL_AVERAGE;
     } else if (stock > 20) {
-      this.stockStatus = "High"
+      this.stockStatus = APP_CONSTANTS.LABEL_HIGH;
     } else {
       this.stockStatus = null;
     }

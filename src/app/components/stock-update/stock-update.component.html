@@ -1,6 +1,6 @@
 <div id="stock-update">
     <input type="number" [(ngModel)]="stockValue" name="stockValue" min="0" (input)="changeLabel()">
     <span *ngIf="stockStatus" class="label"
-        [ngClass]="{'bg-success':stockStatus==='High', 'bg-warning':stockStatus==='Average','bg-danger':stockStatus==='Low'}">{{stockStatus}}</span>
+        [ngClass]="{'bg-success':stockStatus===APP_CONSTANTS.LABEL_HIGH, 'bg-warning':stockStatus===APP_CONSTANTS.LABEL_AVERAGE,'bg-danger':stockStatus===APP_CONSTANTS.LABEL_LOW}">{{stockStatus}}</span>
     <span *ngIf="stockValue" class="label" appStockType [stockValue]="stockValue"></span>
 </div>

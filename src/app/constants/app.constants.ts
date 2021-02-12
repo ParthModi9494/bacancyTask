@@ -1,0 +1,15 @@
+export const APP_CONSTANTS = {
+    CREDENTIALS_ERR: "Please use the below dummy credentials : </br></br> <b>Email:</b> eve.holt@reqres.in </br></br> <b>Password:</b> (any password of your choice 😄)",
+    ALERT_TIMER: 2000,
+    PRODUCT_ADD_SUCCESS: "Product successfully added!",
+    PRODUCT_VALID_ERR: "Please provide valid details!",
+    PRODUCT_EDIT_SUCCESS: "Product data successfully updated!",
+    PRODUCT_CART_ADD: "Product successfully removed from Cart!",
+    PRODUCT_CART_REMOVE: "Product successfully added into Cart!",
+    PRODUCT_FAV_REMOVE: "Product removed from Favourites!",
+    PRODUCT_FAV_ADD: "Product marked as Favourite!",
+    DELETE_CONFIRM: "You want to delete this product?",
+    LABEL_HIGH:"High",
+    LABEL_AVERAGE:"Average",
+    LABEL_LOW:"Low",
+}
